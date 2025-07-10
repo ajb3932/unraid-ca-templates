@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>simple-wishlist</Name>
+  <Repository>ajb3932/simple-wishlist</Repository>
+  <Registry>https://hub.docker.com/r/ajb3932/simple-wishlist</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/ajb3932/simple-wishlist</Support>
+  <Project>https://github.com/ajb3932/simple-wishlist</Project>
+  <Overview>A simple wishlist application for tracking birthday and holiday gift ideas. Built with Node.js and MongoDB.</Overview>
+  <Category>HomeAutomation</Category>
+  <WebUI>http://[IP]:[PORT:8092]</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/ajb3932/simple-wishlist/main/templates/unraid-template.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/ajb3932/simple-wishlist/main/public/images/wishlist-present.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled></DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires>MongoDB container or external MongoDB instance</Requires>
+  
+  <!-- Port Configuration -->
+  <Config Name="WebUI Port" Target="8092" Default="8092" Mode="tcp" Description="Port for accessing the wishlist web interface" Type="Port" Display="always" Required="true" Mask="false"/>
+  
+  <!-- Environment Variables -->
+  <Config Name="Database Host" Target="DBHOST" Default="mongodb:27017" Mode="" Description="MongoDB connection string (host:port)" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Currency" Target="CURRENCY" Default="USD" Mode="" Description="Currency to display for prices" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="List Name" Target="LIST_NAME" Default="My Wishlist" Mode="" Description="Name of your wishlist" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="List Type" Target="LIST_TYPE" Default="bday" Mode="" Description="Type of list (bday, holiday, etc.)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  
+  <!-- MongoDB Volume (if running MongoDB as separate container) -->
+  <Config Name="MongoDB Data" Target="/data/db" Default="/mnt/user/appdata/simple-wishlist/mongodb" Mode="rw" Description="Path to store MongoDB data (only needed if running integrated MongoDB)" Type="Path" Display="advanced" Required="false" Mask="false"/>
+</Container>
